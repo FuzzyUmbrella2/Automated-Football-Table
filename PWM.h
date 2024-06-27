@@ -7,12 +7,13 @@
 
 int initPWM();
 
-void configPWM(int Period);
+void configRotation(int Period);
+void configSpindle(int Period);
 
 int rpmToPeriod(int rpm);
 
-void disable();
-void enable();
+void disableRotation();
+void disableSpindle();
 
 
 #endif

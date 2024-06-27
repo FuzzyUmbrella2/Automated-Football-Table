@@ -1,3 +1,5 @@
+#include "xil_io.h"
+#include "stdlib.h"
 #include <stdio.h>
 #include "platform.h"
 #include "xparameters.h"
@@ -7,11 +9,19 @@
 #define GIC_ID			XPAR_PS7_SCUGIC_0_DEVICE_ID
 #define TIMER0_ID		XPAR_TMRCTR_0_DEVICE_ID
 #define TIMER0_GI_ID	XPAR_FABRIC_TMRCTR_0_VEC_ID
+#define TIMER1_ID		XPAR_TMRCTR_2_DEVICE_ID
+#define TIMER1_GI_ID	XPAR_FABRIC_TMRCTR_2_VEC_ID
 
 
-#define MAX_STEPS		100
 #define STEP_SIZE		20
-#define MAX_CYCLE		2
+#define HOLD_SPEED		30
+#define DECEL			10
+#define ROT_CYCLE		2
+#define MAX_STEPS		100//((MAX_CYCLE)*(STEP_SIZE))+(HOLD_SPEED)+(DECEL)
+
+
+#define SPINDLE_CYCLE	10
+
 /*
 #define START_SPEED		400
 #define END_SPEED		1000
@@ -25,4 +35,6 @@
 
 
 void initInterrupt();
-void startTimer();
+void turnBar();
+void moveSpindle();
+void stopSpindle();
